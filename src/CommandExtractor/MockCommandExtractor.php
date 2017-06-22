@@ -12,7 +12,7 @@ class MockCommandExtractor implements CommandExtractorInterface
     /**
      * {@inheritdoc}
      */
-    public function extractFromRequest(Request $request, string $cmdClassName)
+    public function extractFromRequest(Request $request, string $commandClass, array $additionalProps = [])
     {
         return $this->toReturn;
     }
