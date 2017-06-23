@@ -66,7 +66,12 @@ final class Req2CmdExtension extends Extension
             'extractor' => 'eps.req2cmd.listener.extract_command'
         ];
         foreach ((array)$config['listeners'] as $listenerName => $listenerConfig) {
-            $definition = $container->findDefinition($listenersMap[$listenerName]);
+            $listenerId = $listenersMap[$listenerName];
+            if (!$listenerConfig['enabled']) {
+                $container->removeDefinition($listenerId);
+                continue;
+            }
+            $definition = $container->findDefinition($listenerId);
             $serviceTags = $definition->getTags();
             foreach ($serviceTags as $tagName => $tags) {
                 if ($tagName !== 'kernel.event_listener') {

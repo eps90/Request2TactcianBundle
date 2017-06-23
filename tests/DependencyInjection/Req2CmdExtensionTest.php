@@ -190,4 +190,22 @@ class Req2CmdExtensionTest extends AbstractExtensionTestCase
             ]
         );
     }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToDisableAListener(): void
+    {
+        $config = [
+            'listeners' => [
+                'extractor' => [
+                    'enabled' => false
+                ]
+            ]
+        ];
+
+        $this->load($config);
+
+        $this->assertContainerBuilderNotHasService('eps.req2cmd.listener.extract_command');
+    }
 }
