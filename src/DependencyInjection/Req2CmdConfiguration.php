@@ -22,6 +22,7 @@ final class Req2CmdConfiguration implements ConfigurationInterface
             ->children()
                 ->append($this->addExtractorNode())
                 ->append($this->addCommandBusNode())
+                ->append($this->addEventListenersNode())
             ->end();
 
         return $builder;
@@ -79,6 +80,27 @@ final class Req2CmdConfiguration implements ConfigurationInterface
                     unset($config['name']);
                     return $config;
                 })
+            ->end();
+
+        return $node;
+    }
+
+    private function addEventListenersNode(): NodeDefinition
+    {
+        $builder = new TreeBuilder();
+        $node = $builder->root('listeners');
+
+        $node
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('extractor')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->integerNode('priority')
+                            ->defaultValue(0)
+                        ->end()
+                    ->end()
+                ->end()
             ->end();
 
         return $node;

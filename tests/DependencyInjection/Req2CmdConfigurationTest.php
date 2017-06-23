@@ -193,4 +193,52 @@ class Req2CmdConfigurationTest extends TestCase
             'command_bus'
         );
     }
+
+    /**
+     * @test
+     */
+    public function itShouldDefineDefaultListenerPriority(): void
+    {
+        $inputConfig = [];
+        $expectedProcessedConfig = [
+            'listeners' => [
+                'extractor' => [
+                    'priority' => 0
+                ]
+            ]
+        ];
+
+        $this->assertProcessedConfigurationEquals(
+            [$inputConfig],
+            $expectedProcessedConfig,
+            'listeners'
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToSetListenerPriority(): void
+    {
+        $inputConfig = [
+            'listeners' => [
+                'extractor' => [
+                    'priority' => 128
+                ]
+            ]
+        ];
+        $expectedProcessedConfig = [
+            'listeners' => [
+                'extractor' => [
+                    'priority' => 128
+                ]
+            ]
+        ];
+
+        $this->assertProcessedConfigurationEquals(
+            [$inputConfig],
+            $expectedProcessedConfig,
+            'listeners'
+        );
+    }
 }
