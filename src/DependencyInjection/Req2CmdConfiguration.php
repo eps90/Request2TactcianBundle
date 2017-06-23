@@ -95,6 +95,12 @@ final class Req2CmdConfiguration implements ConfigurationInterface
             ->children()
                 ->arrayNode('extractor')
                     ->addDefaultsIfNotSet()
+                    ->beforeNormalization()
+                        ->ifTrue(function ($enabled) { return is_bool($enabled); })
+                        ->then(function ($isEnabled) {
+                            return ['enabled' => $isEnabled];
+                        })
+                    ->end()
                     ->children()
                         ->booleanNode('enabled')
                             ->defaultValue(true)

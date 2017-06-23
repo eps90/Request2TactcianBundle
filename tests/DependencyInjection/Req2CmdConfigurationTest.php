@@ -262,4 +262,30 @@ class Req2CmdConfigurationTest extends TestCase
             'listeners'
         );
     }
+
+    /**
+     * @test
+     */
+    public function itShouldAllowToDisableAListenerUsingShorthandMethod(): void
+    {
+        $inputConfig = [
+            'listeners' => [
+                'extractor' => false
+            ]
+        ];
+        $expectedProcessedConfiguration = [
+            'listeners' => [
+                'extractor' => [
+                    'enabled' => false,
+                    'priority' => 0
+                ]
+            ]
+        ];
+
+        $this->assertProcessedConfigurationEquals(
+            [$inputConfig],
+            $expectedProcessedConfiguration,
+            'listeners'
+        );
+    }
 }
