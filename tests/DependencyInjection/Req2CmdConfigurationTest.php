@@ -203,6 +203,7 @@ class Req2CmdConfigurationTest extends TestCase
         $expectedProcessedConfig = [
             'listeners' => [
                 'extractor' => [
+                    'enabled' => true,
                     'priority' => 0
                 ]
             ]
@@ -230,6 +231,7 @@ class Req2CmdConfigurationTest extends TestCase
         $expectedProcessedConfig = [
             'listeners' => [
                 'extractor' => [
+                    'enabled' => true,
                     'priority' => 128
                 ]
             ]
@@ -238,6 +240,25 @@ class Req2CmdConfigurationTest extends TestCase
         $this->assertProcessedConfigurationEquals(
             [$inputConfig],
             $expectedProcessedConfig,
+            'listeners'
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldAllowToDisableAListener(): void
+    {
+        $inputConfig = [
+            'listeners' => [
+                'extractor' => [
+                    'enabled' => false
+                ]
+            ]
+        ];
+
+        $this->assertConfigurationIsValid(
+            [$inputConfig],
             'listeners'
         );
     }
