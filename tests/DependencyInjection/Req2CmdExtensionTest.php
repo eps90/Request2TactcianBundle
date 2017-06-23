@@ -117,25 +117,4 @@ class Req2CmdExtensionTest extends AbstractExtensionTestCase
             $defaultCollectorId
         );
     }
-
-    /**
-     * @test
-     */
-    public function itShouldAttachParamMappersFromConfig(): void
-    {
-        $config = [
-            'param_mappers' => [
-                'my_mapper'
-            ]
-        ];
-        $this->load($config);
-
-        $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'eps.req2cmd.collector.param_collector',
-            0,
-            [
-                new Reference('my_mapper')
-            ]
-        );
-    }
 }

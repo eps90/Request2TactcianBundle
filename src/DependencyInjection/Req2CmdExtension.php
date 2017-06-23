@@ -31,7 +31,6 @@ final class Req2CmdExtension extends Extension
         $loader->load('param_mappers.xml');
 
         $this->configureExtractors($config, $container);
-        $this->configureParamMappers($config, $container);
     }
 
     public function getAlias(): string
@@ -43,17 +42,5 @@ final class Req2CmdExtension extends Extension
     {
         $extractorId = (string)$config['extractor']['service_id'];
         $container->setAlias('eps.req2cmd.extractor', $extractorId);
-    }
-
-    private function configureParamMappers(array $config, ContainerBuilder $container): void
-    {
-        $mappers = array_map(
-            function (string $mapperId) {
-                return new Reference($mapperId);
-            },
-            $config['param_mappers']
-        );
-        $collectorDefinition = $container->findDefinition('eps.req2cmd.collector.param_collector');
-        $collectorDefinition->replaceArgument(0, $mappers);
     }
 }
