@@ -20,10 +20,7 @@ final class Req2CmdExtension extends Extension
         $configuration = new Req2CmdConfiguration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new XmlFileLoader(
-            $container,
-            new FileLocator(__DIR__ . '/../Resources/config')
-        );
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
         $loader->load('actions.xml');
         $loader->load('extractors.xml');
@@ -74,12 +71,10 @@ final class Req2CmdExtension extends Extension
             $definition = $container->findDefinition($listenerId);
             $serviceTags = $definition->getTags();
             foreach ($serviceTags as $tagName => $tags) {
-                if ($tagName !== 'kernel.event_listener') {
-                    continue;
-                }
-
-                foreach ($tags as $tagIdx => $tag) {
-                    $serviceTags[$tagName][$tagIdx]['priority'] = $listenerConfig['priority'];
+                if ($tagName === 'kernel.event_listener') {
+                    foreach ($tags as $tagIdx => $tag) {
+                        $serviceTags[$tagName][$tagIdx]['priority'] = $listenerConfig['priority'];
+                    }
                 }
             }
             $definition->setTags($serviceTags);
