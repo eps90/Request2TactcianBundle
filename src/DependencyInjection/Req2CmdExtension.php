@@ -16,7 +16,7 @@ final class Req2CmdExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container): void
     {
-        $configuration = new Configuration();
+        $configuration = new Req2CmdConfiguration();
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new XmlFileLoader(

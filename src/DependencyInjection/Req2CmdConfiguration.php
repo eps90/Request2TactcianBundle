@@ -9,7 +9,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 /**
  * @todo Rename
  */
-final class Configuration implements ConfigurationInterface
+final class Req2CmdConfiguration implements ConfigurationInterface
 {
     /**
      * {@inheritdoc}
