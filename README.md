@@ -327,15 +327,17 @@ The default parameter mapper is the `PathParamsMapper` class instance and it's r
 extracting only route parameters. Of course you can feel free to register your own mapper,
 by implement the `ParamMapperInterface`.
 
-When you're done, register it as a service and add to the list in bundle config:
+When you're done, register it as a service and add the `req2cmd.param_mapper` tag.
+Optionally, you can set a priority to make sure that this mapper will be executed earlier.
+The higher priority is, the more important the service is.
 
 ```yaml
-# app/config/config.yml
+services:
 # ...
-req2cmd:
-  # ...
-  param_mappers:
-    - 'my_mapper' # your mapper's service id
+  app.param_mapper.my_awesome_mapper:
+    class: AppBundle\ParamMapper\MyAwesomeMapper
+    tags:
+      - { name: 'req2cmd.param_mapper', priority: 128 }
 ```
 
 ### But I want to use different extractor!
