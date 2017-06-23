@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Eps\Req2CmdBundle\ParameterMapper;
+namespace Eps\Req2CmdBundle\Params\ParameterMapper;
 
 use Eps\Req2CmdBundle\Exception\ParamMapperException;
 use Symfony\Component\HttpFoundation\Request;

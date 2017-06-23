@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Eps\Req2CmdBundle\Tests\ParameterMapper;
 
 use Eps\Req2CmdBundle\Exception\ParamMapperException;
-use Eps\Req2CmdBundle\ParameterMapper\PathParamsMapper;
+use Eps\Req2CmdBundle\Params\ParameterMapper\PathParamsMapper;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
