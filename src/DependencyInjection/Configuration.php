@@ -6,6 +6,9 @@ namespace Eps\Req2CmdBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
+/**
+ * @todo Rename
+ */
 final class Configuration implements ConfigurationInterface
 {
     /**
@@ -32,6 +35,12 @@ final class Configuration implements ConfigurationInterface
                             ->cannotBeEmpty()
                             ->defaultValue('eps.req2cmd.extractor.serializer')
                         ->end()
+                    ->end()
+                ->end()
+                ->arrayNode('param_mappers')
+                    ->defaultValue(['eps.req2cmd.param_mapper.path'])
+                    ->prototype('scalar')
+                        ->cannotBeEmpty()
                     ->end()
                 ->end()
             ->end();
