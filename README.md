@@ -466,6 +466,33 @@ req2cmd:
 
 With such config this listener will be registered as `kernel.event_listener`  with `priority` value of 128.
 
+### Disabling a listener
+
+You may want to disable a listener. To do that you need to set `enabled` property for the listener to `false`. 
+ 
+```yaml
+# app/config/config.yml
+# ...
+req2cmd:
+  listeners:
+    extractor:
+      enabled: false
+```
+
+or even simpler:
+
+```yaml
+# app/config/config.yml
+# ...
+req2cmd:
+  listeners:
+    extractor: false
+```
+
+> **Note:** You must be aware that if you disable `extractor` listener,
+somewhere in Asia one little cute panda dies. You don't want that, do you?
+No one does. Everyone love pandas. Keep that in mind. 
+
 ### Exceptions
 
 All exceptions in this bundle implement the `Req2CmdExceptionInterface`.
