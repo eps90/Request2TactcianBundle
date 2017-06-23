@@ -87,7 +87,8 @@ class Req2CmdExtensionTest extends AbstractExtensionTestCase
             'kernel.event_listener',
             [
                 'method' => 'onKernelRequest',
-                'event' => 'kernel.request'
+                'event' => 'kernel.request',
+                'priority' => 0
             ]
         );
     }
@@ -161,6 +162,32 @@ class Req2CmdExtensionTest extends AbstractExtensionTestCase
             'eps.req2cmd.command_bus.tactician',
             0,
             new Reference('tactician.commandbus.queued')
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToChangeListenersPriority(): void
+    {
+        $config = [
+            'listeners' => [
+                'extractor' => [
+                    'priority' => 128
+                ]
+            ]
+        ];
+
+        $this->load($config);
+
+        $this->assertContainerBuilderHasServiceDefinitionWithTag(
+            'eps.req2cmd.listener.extract_command',
+            'kernel.event_listener',
+            [
+                'method' => 'onKernelRequest',
+                'event' => 'kernel.request',
+                'priority' => 128
+            ]
         );
     }
 }
