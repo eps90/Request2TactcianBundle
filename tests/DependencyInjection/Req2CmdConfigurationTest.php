@@ -83,47 +83,4 @@ class Req2CmdConfigurationTest extends TestCase
             'extractor'
         );
     }
-
-    /**
-     * @test
-     */
-    public function itShouldHaveDefaultParamMappers(): void
-    {
-        $inputConfig = [];
-        $expectedProcessedConfig = [
-            'param_mappers' => [
-                'eps.req2cmd.param_mapper.path'
-            ]
-        ];
-        $this->assertProcessedConfigurationEquals(
-            [$inputConfig],
-            $expectedProcessedConfig,
-            'param_mappers'
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function itShouldBeAbleToDefineMapOfParamMappersServices(): void
-    {
-        $inputConfig = [
-            'param_mappers' => [
-                'app.mapper.first',
-                'app.mapper.second'
-            ]
-        ];
-        $expectedConfig = [
-            'param_mappers' => [
-                'app.mapper.first',
-                'app.mapper.second'
-            ]
-        ];
-
-        $this->assertProcessedConfigurationEquals(
-            [$inputConfig],
-            $expectedConfig,
-            'param_mappers'
-        );
-    }
 }

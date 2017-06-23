@@ -21,7 +21,6 @@ final class Req2CmdConfiguration implements ConfigurationInterface
         $root
             ->children()
                 ->append($this->addExtractorNode())
-                ->append($this->addParamMappersNode())
             ->end();
 
         return $builder;
@@ -47,18 +46,5 @@ final class Req2CmdConfiguration implements ConfigurationInterface
             ->end();
 
         return $root;
-    }
-
-    private function addParamMappersNode(): NodeDefinition
-    {
-        $builder = new TreeBuilder();
-        $node = $builder->root('param_mappers');
-        $node
-            ->defaultValue(['eps.req2cmd.param_mapper.path'])
-            ->prototype('scalar')
-                ->cannotBeEmpty()
-            ->end();
-
-        return $node;
     }
 }
