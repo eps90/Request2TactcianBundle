@@ -445,7 +445,28 @@ req2cmd:
 
 In such case the `tactician.commandbus.queued` will be used.
 
-## Exceptions
+### Setting listener priority
+
+By default, the `ExtractCommandFromRequestListener` will be registered in your project
+with priority 0. That means that all other listeners that have priority set to higher than 0
+will be executed earlier than `ExtractCommandFromRequestListener`.
+
+Fortunatelly, you can easily change that by setting a proper value in a configuration:
+
+```yaml
+# app/config/config.yml
+# ...
+req2cmd:
+  # ...
+  listeners:
+    extractor:
+      priority: 128
+  # ...
+```
+
+With such config this listener will be registered as `kernel.event_listener`  with `priority` value of 128.
+
+### Exceptions
 
 All exceptions in this bundle implement the `Req2CmdExceptionInterface`.
 Currently, the following exceptions are configured:
