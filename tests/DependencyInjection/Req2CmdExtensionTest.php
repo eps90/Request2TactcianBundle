@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Eps\Req2CmdBundle\Tests\DependencyInjection;
 
 use Eps\Req2CmdBundle\Action\ApiResponderAction;
+use Eps\Req2CmdBundle\CommandBus\TacticianCommandBus;
 use Eps\Req2CmdBundle\CommandExtractor\JMSSerializerCommandExtractor;
 use Eps\Req2CmdBundle\CommandExtractor\SerializerCommandExtractor;
 use Eps\Req2CmdBundle\DependencyInjection\Req2CmdExtension;
@@ -11,7 +12,6 @@ use Eps\Req2CmdBundle\EventListener\ExtractCommandFromRequestListener;
 use Eps\Req2CmdBundle\Params\ParamCollector\ParamCollector;
 use Eps\Req2CmdBundle\Params\ParameterMapper\PathParamsMapper;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
-use Symfony\Component\DependencyInjection\Reference;
 
 class Req2CmdExtensionTest extends AbstractExtensionTestCase
 {
@@ -116,5 +116,15 @@ class Req2CmdExtensionTest extends AbstractExtensionTestCase
             'eps.req2cmd.param_collector',
             $defaultCollectorId
         );
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldHaveCommandBusesDefinition(): void
+    {
+        $defaultBusId = 'eps.req2cmd.command_bus.tactician';
+        $this->assertContainerBuilderHasService($defaultBusId, TacticianCommandBus::class);
+        $this->assertContainerBuilderHasAlias('eps.req2cmd.command_bus');
     }
 }
