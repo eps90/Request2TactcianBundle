@@ -25,8 +25,12 @@ class PathParamsMapper implements ParamMapperInterface
                 $propName = ltrim($propName, self::REQ_CHAR);
             }
 
+            if ($required && $request->attributes->has($propName) && empty($request->attributes->get($propName))) {
+                throw ParamMapperException::paramEmpty($propName);
+            }
+
             if (!$request->attributes->has($propName)) {
-                if ($required) {
+                if ($required && $request->attributes->get($propName) === null) {
                     throw ParamMapperException::noParamFound($propName);
                 }
 

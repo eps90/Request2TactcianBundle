@@ -122,4 +122,24 @@ class PathParamsMapperTest extends TestCase
 
         $this->mapper->map($request, $props);
     }
+
+    /**
+     * @test
+     */
+    public function itShouldThrowWhenRequiredPropertyIsNull(): void
+    {
+        $this->expectException(ParamMapperException::class);
+
+        $requestParams = [
+            'id' => null
+        ];
+        $request = new Request([], [], $requestParams);
+        $props = [
+            'path' => [
+                '!id' => null
+            ]
+        ];
+
+        $this->mapper->map($request, $props);
+    }
 }
