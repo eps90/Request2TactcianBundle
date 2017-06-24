@@ -26,7 +26,7 @@ class Req2CmdConfigurationTest extends TestCase
     public function itShouldSetDefaultExtractorConfig(): void
     {
         $inputConfig = [];
-        $expectedProcessedConfig = [
+        $expectedConfig = [
             'extractor' => [
                 'service_id' => 'eps.req2cmd.extractor.serializer'
             ]
@@ -35,7 +35,7 @@ class Req2CmdConfigurationTest extends TestCase
             [
                 $inputConfig
             ],
-            $expectedProcessedConfig,
+            $expectedConfig,
             'extractor'
         );
     }
@@ -48,7 +48,7 @@ class Req2CmdConfigurationTest extends TestCase
         $inputConfig = [
             'extractor' => 'jms_serializer'
         ];
-        $expectedProcessedConfig = [
+        $expectedConfig = [
             'extractor' => [
                 'service_id' => 'eps.req2cmd.extractor.jms_serializer'
             ]
@@ -57,7 +57,7 @@ class Req2CmdConfigurationTest extends TestCase
             [
                 $inputConfig
             ],
-            $expectedProcessedConfig,
+            $expectedConfig,
             'extractor'
         );
     }
@@ -72,14 +72,14 @@ class Req2CmdConfigurationTest extends TestCase
                 'service_id' => 'app.my_extractor'
             ]
         ];
-        $expectedProcessedConfig = [
+        $expectedConfig = [
             'extractor' => [
                 'service_id' => 'app.my_extractor'
             ]
         ];
         $this->assertProcessedConfigurationEquals(
             [$inputConfig],
-            $expectedProcessedConfig,
+            $expectedConfig,
             'extractor'
         );
     }
@@ -90,7 +90,7 @@ class Req2CmdConfigurationTest extends TestCase
     public function itShouldSetTacticianAsDefaultCommandBus(): void
     {
         $inputConfig = [];
-        $expectedProcessedConfig = [
+        $expectedConfig = [
             'command_bus' => [
                 'service_id' => 'eps.req2cmd.command_bus.tactician',
                 'name' => 'default'
@@ -98,7 +98,7 @@ class Req2CmdConfigurationTest extends TestCase
         ];
         $this->assertProcessedConfigurationEquals(
             [$inputConfig],
-            $expectedProcessedConfig,
+            $expectedConfig,
             'command_bus'
         );
     }
@@ -111,14 +111,14 @@ class Req2CmdConfigurationTest extends TestCase
         $inputConfig = [
             'command_bus' => 'broadway'
         ];
-        $expectedProcessedConfig = [
+        $expectedConfig = [
             'command_bus' => [
                 'service_id' => 'eps.req2cmd.command_bus.broadway'
             ]
         ];
         $this->assertProcessedConfigurationEquals(
             [$inputConfig],
-            $expectedProcessedConfig,
+            $expectedConfig,
             'command_bus'
         );
     }
@@ -133,7 +133,7 @@ class Req2CmdConfigurationTest extends TestCase
                 'service_id' => 'app.command_bus.custom'
             ]
         ];
-        $expectedProcessedConfig = [
+        $expectedConfig = [
             'command_bus' => [
                 'service_id' => 'app.command_bus.custom'
             ]
@@ -141,7 +141,7 @@ class Req2CmdConfigurationTest extends TestCase
 
         $this->assertProcessedConfigurationEquals(
             [$inputConfig],
-            $expectedProcessedConfig,
+            $expectedConfig,
             'command_bus'
         );
     }
@@ -156,7 +156,7 @@ class Req2CmdConfigurationTest extends TestCase
                 'name' => 'queued'
             ]
         ];
-        $expectedProcessedConfig = [
+        $expectedConfig = [
             'command_bus' => [
                 'service_id' => 'eps.req2cmd.command_bus.tactician',
                 'name' => 'queued'
@@ -165,7 +165,7 @@ class Req2CmdConfigurationTest extends TestCase
 
         $this->assertProcessedConfigurationEquals(
             [$inputConfig],
-            $expectedProcessedConfig,
+            $expectedConfig,
             'command_bus'
         );
     }
@@ -181,7 +181,7 @@ class Req2CmdConfigurationTest extends TestCase
                 'name' => 'blablabla'
             ]
         ];
-        $expectedProcessedConfig = [
+        $expectedConfig = [
             'command_bus' => [
                 'service_id' => 'my.custom.bus'
             ]
@@ -189,7 +189,7 @@ class Req2CmdConfigurationTest extends TestCase
 
         $this->assertProcessedConfigurationEquals(
             [$inputConfig],
-            $expectedProcessedConfig,
+            $expectedConfig,
             'command_bus'
         );
     }
@@ -200,7 +200,7 @@ class Req2CmdConfigurationTest extends TestCase
     public function itShouldDefineDefaultListenerPriority(): void
     {
         $inputConfig = [];
-        $expectedProcessedConfig = [
+        $expectedConfig = [
             'listeners' => [
                 'extractor' => [
                     'enabled' => true,
@@ -211,7 +211,7 @@ class Req2CmdConfigurationTest extends TestCase
 
         $this->assertProcessedConfigurationEquals(
             [$inputConfig],
-            $expectedProcessedConfig,
+            $expectedConfig,
             'listeners'
         );
     }
@@ -228,7 +228,7 @@ class Req2CmdConfigurationTest extends TestCase
                 ]
             ]
         ];
-        $expectedProcessedConfig = [
+        $expectedConfig = [
             'listeners' => [
                 'extractor' => [
                     'enabled' => true,
@@ -239,7 +239,7 @@ class Req2CmdConfigurationTest extends TestCase
 
         $this->assertProcessedConfigurationEquals(
             [$inputConfig],
-            $expectedProcessedConfig,
+            $expectedConfig,
             'listeners'
         );
     }
@@ -273,7 +273,7 @@ class Req2CmdConfigurationTest extends TestCase
                 'extractor' => false
             ]
         ];
-        $expectedProcessedConfiguration = [
+        $expectedConfig = [
             'listeners' => [
                 'extractor' => [
                     'enabled' => false,
@@ -284,7 +284,7 @@ class Req2CmdConfigurationTest extends TestCase
 
         $this->assertProcessedConfigurationEquals(
             [$inputConfig],
-            $expectedProcessedConfiguration,
+            $expectedConfig,
             'listeners'
         );
     }
